@@ -12,10 +12,10 @@ client = Groq(
 st.title("Conversa com o AI Dev") 
 pergunta  = st.text_input('pergunta:')
 if st.button('enviar'):
-    if pergunta.strip():
+    # if pergunta.strip():
         reposta =  client.chat.completions.create(
         model = "llama-3.3-70b-versatile",
-        temperature=0.7,
+        # temperature=0.7,
 
         messages=[
         {
