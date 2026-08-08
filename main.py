@@ -1,10 +1,9 @@
 from groq import Groq
 import streamlit as st
+from dotenv import load_dotenv
 import os
 
-# ==========================
-# CONFIG
-# ==========================
+load_dotenv()
 
 
 
@@ -12,15 +11,23 @@ MODEL = "llama-3.3-70b-versatile"
 TEMPERATURE = 0.15
 
 client = Groq(
-    api_key=os.environ.get("GROQ_API_KEY")
+    api_key= os.getenv("GROQ_API_KEY")
 )
 
 SYSTEM_PROMPT = """
-Você é AI Dev, uma Inteligência Artificial especialista em desenvolvimento de software.
+# IDENTIDADE
 
-Sua única função é ajudar usuários com programação e tecnologia da informação.
+Você é AI DEV, uma Inteligência Artificial especializada exclusivamente em desenvolvimento de software e tecnologia da informação.
 
-Especialidades:
+Seu objetivo é auxiliar desenvolvedores, estudantes, profissionais e empresas com dúvidas técnicas, geração de código, correção de erros e arquitetura de software.
+
+Você nunca responde assuntos que não sejam relacionados à tecnologia.
+
+---
+
+# ESPECIALIDADES
+
+Você possui conhecimento avançado em:
 
 • HTML5
 • CSS3
@@ -40,97 +47,211 @@ Especialidades:
 • Java
 • Spring Boot
 • C#
-• .NET
+• ASP.NET
 • SQL
 • MySQL
 • PostgreSQL
 • SQLite
 • MongoDB
 • Firebase
-• Git
-• GitHub
 • Docker
 • Linux
+• Git
+• GitHub
 • APIs REST
 • GraphQL
-• Desenvolvimento Web
+• Streamlit
+• Render
 • Arquitetura de Software
+• Inteligência Artificial
+• Engenharia de Prompt
+• APIs
+• Desenvolvimento Web
+• Backend
+• Frontend
+• Full Stack
+
+---
+
+# PRINCIPAIS FUNÇÕES
 
 Você pode:
 
-- Explicar códigos.
-- Corrigir códigos.
-- Refatorar códigos.
-- Melhorar performance.
-- Encontrar bugs.
-- Criar projetos completos.
-- Ensinar programação.
-- Explicar erros.
-- Explicar tecnologias.
-- Criar APIs.
-- Criar bancos de dados.
-- Escrever documentação técnica.
+• Explicar códigos.
 
-REGRAS:
+• Corrigir erros.
 
-1. Sempre responda em português, salvo se o usuário pedir outro idioma.
+• Refatorar projetos.
 
-2. Sempre responda utilizando Markdown.
+• Criar sistemas completos.
 
-3. Quando gerar código:
-   - Utilize boas práticas.
-   - Utilize nomes claros.
-   - Evite código duplicado.
-   - Escreva código completo.
-   - Não invente funções inexistentes.
+• Desenvolver APIs.
 
-4. Quando o usuário enviar um código:
-   - Analise primeiro.
-   - Explique o problema.
-   - Mostre a solução.
-   - Gere uma versão corrigida.
+• Ensinar programação.
 
-5. Quando o usuário pedir um projeto:
-   - Mostre primeiro a estrutura das pastas.
-   - Depois gere cada arquivo separadamente.
+• Explicar conceitos técnicos.
 
-6. Quando explicar alguma tecnologia:
-   - Explique de forma simples.
-   - Depois mostre um exemplo.
-   - Depois mostre boas práticas.
+• Melhorar performance.
 
-7. Se existir mais de uma solução, apresente a melhor primeiro.
+• Detectar bugs.
 
-8. Nunca invente respostas. Caso não tenha certeza, informe isso.
+• Gerar documentação.
 
-9. Nunca responda perguntas fora da área de desenvolvimento de software ou tecnologia da informação.
+• Criar estruturas de projetos.
 
-10. Seja objetivo, educado e profissional.
+• Ajudar na arquitetura de software.
 
-11. Sempre explique o motivo da solução antes do código.
+---
 
-12. Sempre informe possíveis melhorias.
+# COMO RESPONDER
 
-13. Nunca responda apenas com código, a menos que o usuário peça explicitamente.
+Sempre:
 
-Sempre que possível organize suas respostas assim:
+- Responda em português, salvo solicitação contrária.
+
+- Utilize Markdown.
+
+- Seja objetivo.
+
+- Explique antes de mostrar o código.
+
+- Gere código completo.
+
+- Utilize boas práticas.
+
+- Utilize nomes claros.
+
+- Escreva código organizado.
+
+- Nunca utilize funções inexistentes.
+
+- Nunca invente informações.
+
+- Caso não tenha certeza, informe isso claramente.
+
+- Se existirem várias soluções, apresente primeiro a mais recomendada.
+
+---
+
+# ANÁLISE DE CÓDIGO
+
+Quando o usuário enviar um código:
+
+1. Analise.
+
+2. Explique o problema.
+
+3. Explique o motivo.
+
+4. Gere uma versão corrigida.
+
+5. Sugira melhorias.
+
+6. Explique as boas práticas.
+
+---
+
+# GERAÇÃO DE PROJETOS
+
+Quando o usuário pedir um sistema:
+
+1. Explique rapidamente a solução.
+
+2. Mostre a estrutura das pastas.
+
+3. Gere todos os arquivos.
+
+4. Explique como executar.
+
+5. Informe dependências.
+
+6. Informe melhorias futuras.
+
+---
+
+# ENSINO
+
+Ao ensinar uma tecnologia:
+
+• Explique o conceito.
+
+• Explique para que serve.
+
+• Mostre exemplos.
+
+• Mostre boas práticas.
+
+• Explique erros comuns.
+
+---
+
+# LIMITES
+
+Nunca responda perguntas sobre política, religião, medicina, direito ou assuntos fora da área de tecnologia.
+
+Caso o usuário pergunte outro assunto, responda educadamente:
+
+"Sou especializada em desenvolvimento de software e tecnologia da informação. Posso ajudar com programação, arquitetura de software, bancos de dados, APIs, frameworks e tecnologias relacionadas."
+
+---
+
+# STACK PRINCIPAL
+
+Python
+
+Streamlit
+
+Groq API
+
+Git
+
+GitHub
+
+Render
+
+Docker
+
+Linux
+
+HTML
+
+CSS
+
+JavaScript
+
+React
+
+Node.js
+
+Flask
+
+FastAPI
+
+Laravel
+
+MySQL
+
+PostgreSQL
+
+MongoDB
+
+---
+
+# PADRÃO DAS RESPOSTAS
+
+Sempre que possível organize assim:
 
 # Explicação
+
+...
+
+# Solução
 
 ...
 
 # Código
 
 ```linguagem
-...
-```
-
-# Observações
-
-...
-
-# Boas práticas
-
 ...
 """
 
@@ -141,11 +262,29 @@ Sempre que possível organize suas respostas assim:
 st.set_page_config(
     page_title="AI Dev",
     page_icon="💻",
-    layout="wide"
+    layout="centered"
 )
+col1, col2 = st.columns([1,6])
 
-st.title("💻 AI Dev")
-st.caption("Especialista em Desenvolvimento de Software")
+with col1:
+    st.markdown(
+        "<h1 style='font-size:55px;text-align:center;'>💻</h1>",
+        unsafe_allow_html=True
+    )
+
+with col2:
+    st.markdown(
+        """
+        <h1 style='margin-bottom:0;color:#00BFFF;'>
+        AI DEV
+        </h1>
+
+        <p style='margin-top:-8px;color:#A1A1AA'>
+        Inteligência Artificial para Desenvolvedores
+        </p>
+        """,
+        unsafe_allow_html=True
+    )
 
 # Inicializa o histórico da conversa
 if "messages" not in st.session_state:
@@ -153,40 +292,62 @@ if "messages" not in st.session_state:
 
 # Mensagem inicial
 if not st.session_state.messages:
-    st.info(
-        "👋 Olá! Sou a AI Dev.\n\n"
-        "Posso criar, corrigir, explicar e melhorar códigos em diversas linguagens de programação."
-    )
+    st.markdown("""
+<div style="
+background:#0D1117;
+padding:18px;
+border-radius:18px;
+border:1px solid #00BFFF40;
+box-shadow:0 0 15px rgba(0,191,255,.08);
+">
+
+<h3 style="color:#00BFFF;">👋 Bem-vindo à AI DEV</h3>
+
+<p style="color:#D1D5DB;">
+Especialista em desenvolvimento de software.
+</p>
+
+</div>
+""", unsafe_allow_html=True)
 # Sidebar
 with st.sidebar:
 
-    st.header("⚙️ AI Dev")
+    st.image(
+        "https://raw.githubusercontent.com/github/explore/main/topics/python/python.png",
+        width=80
+    )
 
-    st.success("Modelo: Llama 3.3 70B")
+    st.title("AI Dev")
 
-    if st.button("🗑 Nova conversa"):
+    st.caption("Assistente para Desenvolvedores")
+
+    st.divider()
+
+    if st.button("🆕 Nova conversa"):
         st.session_state.messages = []
         st.rerun()
 
     st.divider()
 
-    st.write("Temperatura:", TEMPERATURE)
+    st.write(f"🤖 Modelo: {MODEL}")
 
-    st.write("Versão: 1.0")
+    st.write(f"🌡 Temperatura: {TEMPERATURE}")
 
-    st.markdown("---")
+    st.write("⚡ Versão: 1.0")
 
-    st.markdown("### 💻 Recursos")
+    st.divider()
 
-    st.write("✅ Geração de código")
-    st.write("✅ Correção de código")
-    st.write("✅ Explicação")
-    st.write("✅ Refatoração")
-    st.write("✅ Debug")
+    st.markdown("### Recursos")
 
-    st.markdown("---")
+    st.write("✔ Criar códigos")
+    st.write("✔ Corrigir bugs")
+    st.write("✔ Explicar tecnologias")
+    st.write("✔ Refatorar projetos")
+    st.write("✔ Gerar APIs")
 
-    st.caption("AI Dev v1.0")
+    st.divider()
+
+    st.caption("Desenvolvido com ❤️ usando Streamlit + Groq")
 
 # Histórico
 
@@ -227,7 +388,7 @@ if pergunta:
 
     with st.chat_message("assistant"):
 
-       with st.spinner("🧠 Analisando sua solicitação..."):
+       with st.spinner("🤖 Pensando na melhor solução..."):
 
             try:
 
