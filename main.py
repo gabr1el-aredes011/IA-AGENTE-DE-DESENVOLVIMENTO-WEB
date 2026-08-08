@@ -7,10 +7,11 @@ import os
 
 client = Groq(
     api_key=os.environ.get("GROQ_API_KEY"),
-)
+)    
 
 st.title("Conversa com o AI Dev") 
 pergunta  = st.text_input('pergunta:')
+
 if st.button('enviar'):
     # if pergunta.strip():
         reposta =  client.chat.completions.create(
@@ -31,6 +32,6 @@ if st.button('enviar'):
         )
 
         st.text(reposta.choices[0].message.content)
-        time.sleep[0]
+        time.sleep(0)
 
 
