@@ -1,0 +1,35 @@
+from groq import Groq
+import streamlit as st 
+import os
+
+# pip install groq 
+
+client = Groq(
+    api_key=os.environ.get("GROQ_API_KEY"),
+)
+
+st.title("Conversa com o AI Dev") 
+pergunta  = st.text_input('pergunta:')
+if st.button('enviar'):
+    if pergunta.strip():
+        reposta =  client.chat.completions.create(
+        model = "llama-3.3-70b-versatile",
+        temperature=0.7,
+
+        messages=[
+        {
+        'role':'system',
+        'content':"Você é uma experiente IA desenvolvedora web."
+        },
+        {
+            'role':'user',
+            'content': pergunta
+            
+        }
+        ]
+        )
+
+        st.text(reposta.choices[0].message.content)
+        time.sleep[0]
+
+
